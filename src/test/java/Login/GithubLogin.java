@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 public class GithubLogin {
     private WebDriver driver;
 
-    public void setUp(){
+    public void setUp() throws InterruptedException {
         System.setProperty("webdriver.chrome.driver", "resources/chromedriver.exe");
         driver = new ChromeDriver();
 
@@ -28,15 +28,16 @@ public class GithubLogin {
         //Click on the Sign in button
         driver.findElement(By.xpath("/html/body/div[3]/main/div/form/div[4]/input[9]")).click();
 
+        Thread.sleep(10000);
+
+        //Close window
+        driver.quit();
     }
     //Close the browser after
-    public static void main(String args[]){
+    public static void main(String args[]) throws InterruptedException{
         GithubLogin test = new GithubLogin();
         test.setUp();
     }
 
-    public void setDriver(WebDriver driver){
-        this.driver = driver;
-        driver.quit();
-    }
+
 }
